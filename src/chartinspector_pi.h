@@ -82,6 +82,12 @@ private:
   bool IsFeatureEnabled(const wxString &feature) const;
   void UpdateHoverObject();
   void UpdateHoverGeometry(bool force = false);
+  void ApplyHoverWindowTheme();
+  void UpdateHoverInfoPanel(const wxString &feature,
+                            const wxString &objectName,
+                            const wxString &attributes, int geometryType,
+                            const wxString &associatedLightAttributes = wxEmptyString);
+  void HideHoverInfoPanel();
   void QueryAssociatedLight();
   void BuildInfoPanel(wxWindow *canvas);
   void BuildVisualSummary();
@@ -119,6 +125,15 @@ private:
   wxString m_hoverFeature;
   bool m_hasHoverGeometry = false;
 
+  // CHARTINSPECTOR_HOVER_INFO_V1
+  wxFrame *m_hoverInfoWindow = nullptr;
+  wxStaticText *m_hoverInfoTitle = nullptr;
+  wxStaticText *m_hoverInfoMeta = nullptr;
+  wxPanel *m_hoverInfoDetails = nullptr;
+  wxFlexGridSizer *m_hoverInfoGrid = nullptr;
+  wxStaticText *m_hoverInfoBody = nullptr;
+  wxString m_hoverInfoKey;
+
   wxPanel *m_infoPanel = nullptr;
   wxStaticText *m_infoTitle = nullptr;
   wxStaticText *m_infoSubtitle = nullptr;
@@ -140,8 +155,9 @@ private:
   int m_toolbarId = -1;
   bool m_enabled = true;
   bool m_showTechnicalData = false;
+  bool m_includeScaleHidden = false;
   int m_hitRadiusPixels = 5;
-  wxString m_featureFilter = "BOY*,BCN*,LIGHTS,WRECKS,UWTROC,OBSTRN";
+  wxString m_featureFilter = "BOY*,BCN*,LIGHTS,TOPMAR,DAYMAR,WRECKS,UWTROC,OBSTRN,LNDMRK,BUISGL,SILTNK,BRIDGE,CRANES,FLODOC,GATCON,DAMCON,HRBFAC,BERTHS,MORFAC,OFSPLF,PILPNT,CBLSUB,PIPARE,PIPSOL,TUNNEL,RTPBCN,RADSTA,RSCSTA,FORSTC,CAUSWY,DYKCON";
   PI_ColorScheme m_colorScheme = PI_GLOBAL_COLOR_SCHEME_DAY;
 
   S57Catalog m_s57Catalog;

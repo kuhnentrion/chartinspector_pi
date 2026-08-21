@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(chartinspector VERSION 0.2.8.0 LANGUAGES CXX)
+project(chartinspector VERSION 0.3.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -17,6 +17,10 @@ add_library(chartinspector_pi SHARED
     src/chartinspector_pi.h
     src/s57_catalog.cpp
     src/s57_catalog.h
+    src/ui/app_style.cpp
+    src/ui/app_style.h
+    src/ui/rounded_panel.cpp
+    src/ui/rounded_panel.h
 )
 
 target_include_directories(chartinspector_pi PRIVATE
